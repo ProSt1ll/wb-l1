@@ -8,13 +8,13 @@ import (
 )
 
 func partition(array []int, left, right int) int {
-	// берем центральный элемент за пивот
+	// берем центральный элемент за пивот(мождно брать любой)
 	pivot := array[(left+right)/2]
 
 	idxLeft, idxRight := left, right
 
 	for idxLeft <= idxRight {
-		//ищем последний индекс элемента слева , больше чем пивот
+		//ищем последний индекс элемента слева, больше чем пивот
 		for array[idxLeft] < pivot {
 			idxLeft++
 		}
@@ -59,7 +59,7 @@ func main() {
 		array = append(array, rand.Intn(100))
 	}
 	fmt.Println(array)
-	//сорируем копию массива для проверки
+	//сортируем копию массива для проверки
 	sorted := array
 	sort.Ints(sorted)
 	//сортируем

@@ -45,7 +45,7 @@ func main() {
 	fmt.Println(array)
 	for i := 0; i < 10; i++ {
 		if binarySearch(array[i], array) != i {
-			//Проверка если вдруг в массиве есть два одинаковых числа
+			//Проверка на одинаковые числа в массиве
 			if (i == 0) && (array[i+1] == array[i]) {
 				continue
 			} else if (array[i-1] == array[i]) || (array[i+1] == array[i]) {

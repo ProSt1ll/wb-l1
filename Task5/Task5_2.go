@@ -60,7 +60,7 @@ func main() {
 	time.Sleep(time.Duration(n * int(time.Second)))
 	//отправляем в канал завершения
 	quit <- struct{}{}
-	//ждем завершение воркеров
+	//ждем завершения воркеров
 	wg.Wait()
 	log.Println("Process shutdown")
 }

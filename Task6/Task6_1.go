@@ -13,26 +13,30 @@ func main() {
 
 	//создаем вейтгруппу для синхронизации(чтобы процесс раньше горутинки не завершился)
 	wg := &sync.WaitGroup{}
-	wg.Add(1)
+	wg.Add(2)
 	//горутина работяги который работает и слушает канал выхода
-	go func() {
-		//устанавливаем defer функцию выполненной операции(декремент счетчика) группы ожидания
-		defer wg.Done()
-		for {
-			select {
-			case <-quit:
-				fmt.Println("Gorutine shutdown")
-				return
-			default:
-				fmt.Println("work")
+	for i := 0; i < 2; i++ {
+		go func() {
+			//устанавливаем defer функцию выполненной операции(декремент счетчика) группы ожидания
+			defer wg.Done()
+			for {
+				select {
+				case <-quit:
+					fmt.Println("Gorutine shutdown")
+					return
+				default:
+					fmt.Println("work")
+				}
+				time.Sleep(time.Second)
 			}
-			time.Sleep(time.Second)
-		}
-	}()
+		}()
+	}
 	//Немного ждем
 	time.Sleep(time.Second * 3)
-	//отправляем пустую структуру в канал завершения
-	quit <- struct{}{}
+	//закрываем канал тк у нас несколько горутин, но стоит учесть
+	//что никто не должен в него писать иначе будет паника
+	close(quit)
+
 	//ждем завершения горутинки
 	wg.Wait()
 

@@ -11,7 +11,8 @@ func main() {
 }
 
 //функция преобразует в срез рун и проходится по нему,
-//если вытаскивает из мапы - повтор
+//если вытаскивает из мапы - повтор - false
+//если нет - пишет, дошла до конца - true
 func checkStr(str string) bool {
 	m := make(map[rune]struct{})
 	str = strings.ToLower(str)

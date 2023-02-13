@@ -67,6 +67,6 @@ func main() {
 	cancel()
 	//ждем всех
 	wg.Wait()
-	//вывод результа
+	//вывод результат
 	fmt.Println(count.count)
 }

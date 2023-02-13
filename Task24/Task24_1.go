@@ -12,7 +12,6 @@ func main() {
 }
 
 //структура точки
-
 type Point struct {
 	x int
 	y int
